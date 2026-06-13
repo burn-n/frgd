@@ -1,23 +1,20 @@
-name: sniper.lol 2c checker
+name: guns.lol r Monitor
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:          # Allows manual trigger
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/2 * * * *"    # Every 10 minutes (adjust as needed)
 
 jobs:
-  run:
+  monitor:
     runs-on: ubuntu-latest
-
+    
     env:
-      MODE: 2c
-      AMOUNT: 5000
-      WORDLIST: newwords.txt
-      PAGES: 3
-
+      CHECK_INTERVAL: 10       # Check every 45 seconds (recommended)
       WEBHOOK_AVAILABLE: ${{ secrets.WEBHOOK_AVAILABLE }}
       WEBHOOK_TAKEN: ${{ secrets.WEBHOOK_TAKEN }}
       WEBHOOK_BANNED: ${{ secrets.WEBHOOK_BANNED }}
+      WEBHOOK_RATE: ${{ secrets.WEBHOOK_RATE }}
 
     steps:
       - name: Checkout repo
@@ -34,8 +31,8 @@ jobs:
 
       - name: Install Playwright Chromium
         run: |
-          playwright install chromium
+          playwright install chromium --with-deps
 
-      - name: Run script
+      - name: Run r Monitor
         run: |
           python main.py
