@@ -7,10 +7,10 @@ BASE_URL = "https://guns.lol/{}"
 RATE_RETRY_DELAY = 120
 
 # -------- ENV VARIABLES -------- #
-WEBHOOK_AVAILABLE = "https://discord.com/api/webhooks/1487940802138210304/CB5y4Y-ulRvMxZrrEw_m8VIVHnXVI6kEzoxphkJDQjs4PLwoh0gnv0NlioF20Y6LW-jS"
-WEBHOOK_TAKEN = "https://discord.com/api/webhooks/1488700392798818414/btjVtlIHeGCi44G38WcTNuEQXvqcnNI59AhRFLn4ZZnZPam3xZxf6ko39ajWQpJgrJ7k"
-WEBHOOK_BANNED = "https://discord.com/api/webhooks/1488700445047263254/tzMhXlW-thXQ2SL2WvV8sC3gHBgI-4gvKMgISccACHzbOEHz62iXnHKK4VVQohlac9ll"
-WEBHOOK_RATE = "https://discord.com/api/webhooks/1488700500877774958/_SJCUAGgIi_TkCpXp9VJCAFC3QM9Qo7UqtIKhjLu5ENZBd7ZRnw5bCTUhm-hT54pgjP8"
+WEBHOOK_AVAILABLE = os.getenv("WEBHOOK_AVAILABLE") or "https://discord.com/api/webhooks/1487940802138210304/CB5y4Y-ulRvMxZrrEw_m8VIVHnXVI6kEzoxphkJDQjs4PLwoh0gnv0NlioF20Y6LW-jS"
+WEBHOOK_TAKEN = os.getenv("WEBHOOK_TAKEN") or "https://discord.com/api/webhooks/1488700392798818414/btjVtlIHeGCi44G38WcTNuEQXvqcnNI59AhRFLn4ZZnZPam3xZxf6ko39ajWQpJgrJ7k"
+WEBHOOK_BANNED = os.getenv("WEBHOOK_BANNED") or "https://discord.com/api/webhooks/1488700445047263254/tzMhXlW-thXQ2SL2WvV8sC3gHBgI-4gvKMgISccACHzbOEHz62iXnHKK4VVQohlac9ll"
+WEBHOOK_RATE = os.getenv("WEBHOOK_RATE") or "https://discord.com/api/webhooks/1488700500877774958/_SJCUAGgIi_TkCpXp9VJCAFC3QM9Qo7UqtIKhjLu5ENZBd7ZRnw5bCTUhm-hT54pgjP8"
 
 CHECK_INTERVAL = float(os.getenv("CHECK_INTERVAL", "10"))  # seconds between checks
 USER_AGENT = (
