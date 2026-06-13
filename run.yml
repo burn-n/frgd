@@ -1,0 +1,41 @@
+name: sniper.lol 2c checker
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    env:
+      MODE: 2c
+      AMOUNT: 5000
+      WORDLIST: newwords.txt
+      PAGES: 3
+
+      WEBHOOK_AVAILABLE: ${{ secrets.WEBHOOK_AVAILABLE }}
+      WEBHOOK_TAKEN: ${{ secrets.WEBHOOK_TAKEN }}
+      WEBHOOK_BANNED: ${{ secrets.WEBHOOK_BANNED }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Install Playwright Chromium
+        run: |
+          playwright install chromium
+
+      - name: Run script
+        run: |
+          python main.py
